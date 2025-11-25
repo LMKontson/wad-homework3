@@ -24,14 +24,14 @@
             required
           />
         </div>
-        
+
         <div v-if="passwordErrors.length > 0" class="password-errors">
-            <p class="error-title">The password is not valid:</p>
-            <ul class="error-list">
-              <li v-for="(error, index) in passwordErrors" :key="index">
-                {{ error }}
-              </li>
-            </ul>
+          <p class="error-title">The password is not valid:</p>
+          <ul class="error-list">
+            <li v-for="(error, index) in passwordErrors" :key="index">
+              {{ error }}
+            </li>
+          </ul>
         </div>
 
         <button 
@@ -68,24 +68,24 @@ export default {
       }
 
       if (!/[A-Z]/.test(password)) {
-        this.passwordErrors.push('Includes at least one uppercase alphabet character')
+        this.passwordErrors.push('Must include at least one uppercase alphabet character')
       }
 
       const lowercaseMatches = password.match(/[a-z]/g)
       if (!lowercaseMatches || lowercaseMatches.length < 2) {
-        this.passwordErrors.push('Includes at least two lowercase alphabet characters')
+        this.passwordErrors.push('Must include at least two lowercase alphabet characters')
       }
 
       if (!/\d/.test(password)) {
-        this.passwordErrors.push('Includes at least one numeric value')
+        this.passwordErrors.push('Must include at least one numeric value')
       }
 
       if (password.length > 0 && !/^[A-Z]/.test(password)) {
-        this.passwordErrors.push('It should start with an uppercase alphabet')
+        this.passwordErrors.push('Must start with an uppercase alphabet')
       }
 
       if (!password.includes('_')) {
-        this.passwordErrors.push('It should include the character "_"')
+        this.passwordErrors.push('Must include the character "_"')
       }
     },
     handleSubmit() {
@@ -115,18 +115,23 @@ export default {
 }
 
 .signup-container {
-  background: #c6f6d5;
-  border-radius: 15px;
-  padding: 3rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
   max-width: 500px;
+  gap: 1%;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6rem 3rem;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .form-group {
@@ -180,6 +185,7 @@ export default {
 
 .error-list li {
   margin-bottom: 0.3rem;
+  text-align: left;
 }
 
 .submit-button {
